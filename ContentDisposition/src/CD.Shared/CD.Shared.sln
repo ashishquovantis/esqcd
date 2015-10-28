@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Infrastructure", "CD.Infrastructure\CD.Infrastructure.csproj", "{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Persistance.DataProvider", "CD.Persistance.DataProvider\CD.Persistance.DataProvider.csproj", "{16DCD1B4-F480-4124-8709-90273471479B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.TransitionsWorkflow", "CD.TransitionsWorkflow\CD.TransitionsWorkflow.csproj", "{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationServiceLocalProxy", "CD.AuthorizationServiceLocalProxy\CD.AuthorizationServiceLocalProxy.csproj", "{C2AF1237-A6F6-4ECE-B963-D67315EB100F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Crosscutting", "CD.Crosscutting\CD.Crosscutting.csproj", "{3307009F-4813-472A-8F8D-5A4561E7EC18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationService", "..\CDServices\AuthorizationService\CD.AuthorizationService\CD.AuthorizationService.csproj", "{8689B75B-5275-419F-A5D5-CE409543E7F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

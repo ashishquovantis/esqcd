@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Authorization", "CD.Authorization\CD.Authorization.csproj", "{8FBE88AA-952B-4667-9112-7ED42CF35AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationServiceLocalProxy", "..\CD.Shared\CD.AuthorizationServiceLocalProxy\CD.AuthorizationServiceLocalProxy.csproj", "{C2AF1237-A6F6-4ECE-B963-D67315EB100F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationServiceProxyProvider", "..\CD.Shared\CD.AuthorizationServiceProxyProvider\CD.AuthorizationServiceProxyProvider.csproj", "{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Infrastructure", "..\CD.Shared\CD.Infrastructure\CD.Infrastructure.csproj", "{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.TransitionsWorkflow", "..\CD.Shared\CD.TransitionsWorkflow\CD.TransitionsWorkflow.csproj", "{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130A02A4-FF8A-48DD-BFA5-C77AF43AAAC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

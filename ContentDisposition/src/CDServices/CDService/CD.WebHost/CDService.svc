@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CD.Service.HelpDeskService" Factory="CD.Service.WebHost.CDServiceFactory"%>

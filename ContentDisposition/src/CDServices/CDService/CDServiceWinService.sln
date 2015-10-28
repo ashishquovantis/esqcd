@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationServiceLocalProxy", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.AuthorizationServiceLocalProxy\CD.AuthorizationServiceLocalProxy.csproj", "{C2AF1237-A6F6-4ECE-B963-D67315EB100F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationServiceProxyProvider", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.AuthorizationServiceProxyProvider\CD.AuthorizationServiceProxyProvider.csproj", "{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Crosscutting", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.Crosscutting\CD.Crosscutting.csproj", "{3307009F-4813-472A-8F8D-5A4561E7EC18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Formula", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.Formula\CD.Formula.csproj", "{013E6CF5-A299-414D-9370-70F9E2659880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Authorization", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDAuthorization\CD.Authorization\CD.Authorization.csproj", "{8FBE88AA-952B-4667-9112-7ED42CF35AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Business.Logic", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.Business\CD.Business.Logic\CD.Business.Logic.csproj", "{8F6A61FB-C1F7-4F25-ACAA-1C39D7BAEFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.DevExpress", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.DevExpress\CD.DevExpress.csproj", "{E45848CC-26BD-46B6-9948-909E6507DC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.FilterTags", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.FilterTags\CD.FilterTags.csproj", "{AF864B7A-6714-441C-9E00-735C8D7D6A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Service", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.Service\CD.Service.csproj", "{7456649E-0E50-4EE0-A397-6DC8640B3500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Infrastructure", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.Infrastructure\CD.Infrastructure.csproj", "{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Persistance.DataProvider", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CD.Shared\CD.Persistance.DataProvider\CD.Persistance.DataProvider.csproj", "{16DCD1B4-F480-4124-8709-90273471479B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Persistance.IncidentRepositoryProxy", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.Persistance\CD.Persistance.IncidentRepositoryProxy\CD.Persistance.IncidentRepositoryProxy.csproj", "{E783CDF3-E8E1-4FE9-A3B5-BB6891BA6735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Persistance.RepositoryProxyProvider", "..\..\..\..\Desktop\Structure\ContentDisposition\src\CDServices\CDService\CD.Persistance\CD.Persistance.RepositoryProxyProvider\CD.Persistance.RepositoryProxyProvider.csproj", "{1ED18426-7890-4A3B-B0F7-62D0B4165279}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AF1237-A6F6-4ECE-B963-D67315EB100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA4B0A2-E0A1-44BB-AA13-77A2E732146D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3307009F-4813-472A-8F8D-5A4561E7EC18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{013E6CF5-A299-414D-9370-70F9E2659880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013E6CF5-A299-414D-9370-70F9E2659880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013E6CF5-A299-414D-9370-70F9E2659880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013E6CF5-A299-414D-9370-70F9E2659880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBE88AA-952B-4667-9112-7ED42CF35AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6A61FB-C1F7-4F25-ACAA-1C39D7BAEFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6A61FB-C1F7-4F25-ACAA-1C39D7BAEFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6A61FB-C1F7-4F25-ACAA-1C39D7BAEFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6A61FB-C1F7-4F25-ACAA-1C39D7BAEFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45848CC-26BD-46B6-9948-909E6507DC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45848CC-26BD-46B6-9948-909E6507DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45848CC-26BD-46B6-9948-909E6507DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45848CC-26BD-46B6-9948-909E6507DC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF864B7A-6714-441C-9E00-735C8D7D6A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF864B7A-6714-441C-9E00-735C8D7D6A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF864B7A-6714-441C-9E00-735C8D7D6A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF864B7A-6714-441C-9E00-735C8D7D6A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7456649E-0E50-4EE0-A397-6DC8640B3500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7456649E-0E50-4EE0-A397-6DC8640B3500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7456649E-0E50-4EE0-A397-6DC8640B3500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7456649E-0E50-4EE0-A397-6DC8640B3500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16DCD1B4-F480-4124-8709-90273471479B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E783CDF3-E8E1-4FE9-A3B5-BB6891BA6735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E783CDF3-E8E1-4FE9-A3B5-BB6891BA6735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E783CDF3-E8E1-4FE9-A3B5-BB6891BA6735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E783CDF3-E8E1-4FE9-A3B5-BB6891BA6735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED18426-7890-4A3B-B0F7-62D0B4165279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED18426-7890-4A3B-B0F7-62D0B4165279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED18426-7890-4A3B-B0F7-62D0B4165279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED18426-7890-4A3B-B0F7-62D0B4165279}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
