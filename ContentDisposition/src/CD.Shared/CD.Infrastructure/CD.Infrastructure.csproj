@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE35F421-CFF0-43D8-AC15-D0DE3F64C51A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CD.Infrastructure</RootNamespace>
+    <AssemblyName>CD.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ESQ.CrossCutting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\NetPlatform4.5\trunk\CrossCutting\Postsharp\bin\Debug\ESQ.CrossCutting.dll</HintPath>
+    </Reference>
+    <Reference Include="ESQ.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\NetPlatform4.5\trunk\Infrastructure\bin\Debug\ESQ.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Poco\ActionItem.cs" />
+    <Compile Include="Poco\Atm.cs" />
+    <Compile Include="Poco\AtmSet.cs" />
+    <Compile Include="Poco\Enum\ActionType.cs" />
+    <Compile Include="Poco\Enum\AssetType.cs" />
+    <Compile Include="Poco\Enum\ControlType.cs" />
+    <Compile Include="Poco\Enum\GridCustomOperation.cs" />
+    <Compile Include="Poco\Enum\GridLoadOperation.cs" />
+    <Compile Include="Poco\Enum\HelpDeskCommand.cs" />
+    <Compile Include="Poco\Enum\HelpDeskCommandActionItem.cs" />
+    <Compile Include="Poco\Enum\HelpDeskMenuItem.cs" />
+    <Compile Include="Poco\Enum\HelpDeskOperationItem.cs" />
+    <Compile Include="Poco\Enum\HelpDeskTarget.cs" />
+    <Compile Include="Poco\Enum\IncidentDurationTypes.cs" />
+    <Compile Include="Poco\Enum\ResultCodes.cs" />
+    <Compile Include="Poco\Enum\TerminalTypes.cs" />
+    <Compile Include="Poco\Enum\UserAuthenticationMode.cs" />
+    <Compile Include="Poco\Incident.cs" />
+    <Compile Include="Poco\Transition.cs" />
+    <Compile Include="Poco\UserProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\App\ICDWebApiService.cs" />
+    <Compile Include="Services\App\IWebMessageHandler.cs" />
+    <Compile Include="Services\App\OperationResult.cs" />
+    <Compile Include="Services\Business\ICDManager.cs" />
+    <Compile Include="Services\App\IAuthorizationService.cs" />
+    <Compile Include="Services\App\IAuthorizationServiceProxyProvider.cs" />
+    <Compile Include="Services\App\ICDService.cs" />
+    <Compile Include="Services\App\IOperationResult.cs" />
+    <Compile Include="Services\App\IWebOperationResult.cs" />
+    <Compile Include="Services\IDataProvider.cs" />
+    <Compile Include="Services\Persistance\ICDDataProvider.cs" />
+    <Compile Include="Util\Config.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Poco\Filter\" />
+    <Folder Include="Poco\Integration\" />
+    <Folder Include="Poco\Validation\" />
+    <Folder Include="Services\Preferences\" />
+    <Folder Include="Services\RBAC\Configuration\" />
+    <Folder Include="Services\RBAC\Enum\" />
+    <Folder Include="Services\RBAC\Expression\" />
+    <Folder Include="Services\RBAC\Rule\" />
+    <Folder Include="Services\RBAC\Scope\" />
+    <Folder Include="Services\Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
