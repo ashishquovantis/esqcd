@@ -11,6 +11,7 @@
     <AssemblyName>CD.Authorization</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PostSharpIgnoredPackages>PostSharp.Patterns.Model</PostSharpIgnoredPackages>
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,14 +35,26 @@
     <Reference Include="CD.Infrastructure">
       <HintPath>..\..\CD.Shared\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="CD.TransitionsWorkflow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CD.Shared\CD.TransitionsWorkflow\bin\Debug\CD.TransitionsWorkflow.dll</HintPath>
+    </Reference>
     <Reference Include="ESQ.CrossCutting">
       <HintPath>..\..\..\..\NetPlatform4.5\trunk\CrossCutting\Postsharp\bin\Debug\ESQ.CrossCutting.dll</HintPath>
     </Reference>
     <Reference Include="ESQ.Infrastructure">
       <HintPath>..\..\..\..\NetPlatform4.5\trunk\Infrastructure\bin\Debug\ESQ.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=4.1.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\..\CDServices\CDService\packages\PostSharp.4.1.27\lib\net35-client\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp">
+      <HintPath>..\..\ContentDisposition\packages\PostSharp.4.1.28\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Common">
+      <HintPath>..\..\ContentDisposition\packages\PostSharp.Patterns.Common.4.1.28\lib\net40\PostSharp.Patterns.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Model">
+      <HintPath>..\..\ContentDisposition\packages\PostSharp.Patterns.Model.4.1.28\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,7 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -69,16 +84,12 @@
       <Project>{4da4b0a2-e0a1-44bb-aa13-77a2e732146d}</Project>
       <Name>CD.AuthorizationServiceProxyProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CD.Shared\CD.TransitionsWorkflow\CD.TransitionsWorkflow.csproj">
-      <Project>{130a02a4-ff8a-48dd-bfa5-c77af43aaac9}</Project>
-      <Name>CD.TransitionsWorkflow</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets" Condition="Exists('..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets')" />
+  <Import Project="..\..\ContentDisposition\packages\PostSharp.4.1.28\tools\PostSharp.targets" Condition="Exists('..\..\ContentDisposition\packages\PostSharp.4.1.28\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
-    <Error Condition="!Exists('..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
-    <Error Condition="Exists('..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="!Exists('..\..\ContentDisposition\packages\PostSharp.4.1.28\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\..\ContentDisposition\packages\PostSharp.4.1.28\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

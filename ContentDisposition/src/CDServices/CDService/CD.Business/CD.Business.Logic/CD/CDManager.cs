@@ -17,7 +17,7 @@ using System.Configuration;
 
 namespace CD.Business.Logic.CD
 {
-   public class CDManager: ICDManager
+    public class CDManager : ICDManager
     {
         private ICDDataProvider cdDataProvider;
 
@@ -35,29 +35,22 @@ namespace CD.Business.Logic.CD
         {
             UserProfile userProfile = null;
 
-            string connstr = string.Empty;
-            if (System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"] != null && !string.IsNullOrEmpty(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString()))
-                connstr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-           
-            using (var dbContext = new DbContext(connstr))
+            using (var dbContext = new DbContext())
             {
                 userProfile = cdDataProvider.AuthenticateUser(username, dbContext);
             }
             if (userProfile != null)
             {
-             //   userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
+                   userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
             }
 
             return userProfile;
         }
 
 
-       public OperationResult UserExists(string userName, bool formatType)
+        public OperationResult UserExists(string userName, bool formatType)
         {
-            string connstr = string.Empty;
-            if (System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"] != null && !string.IsNullOrEmpty(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString()))
-                connstr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-           
+
             UserProfile userProfile = null;
             using (var dbContext = new DbContext())
             {
@@ -66,35 +59,33 @@ namespace CD.Business.Logic.CD
 
             if (userProfile != null)
             {
-              //  userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
-              //  return new OperationResult() { ResultCode = ResultCodes.Ok, Message = "Success" };
-                return null;
+                //  userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
+                return new OperationResult() { ResultCode = ResultCodes.Ok, Result=true, Message = "Success" };
             }
 
-           // return new OperationResult() { ResultCode=ResultCodes.Error,Message="faild" };
-            return null;
+            return new OperationResult() { ResultCode = ResultCodes.Error, Message = "faild" };
         }
 
 
-       public byte[] CreateDefaultPermissionKey()
-       {
-           return AuthorizationManager.Instance.CreateDefaultPermissionKey();
-       }
+        public byte[] CreateDefaultPermissionKey()
+        {
+            return AuthorizationManager.Instance.CreateDefaultPermissionKey();
+        }
 
-       public byte[] CreatePermissionKey(List<AtmSet> atmSets)
-       {
-           return AuthorizationManager.Instance.CreatePermissionKey(atmSets);
-       }
+        public byte[] CreatePermissionKey(List<AtmSet> atmSets)
+        {
+            return AuthorizationManager.Instance.CreatePermissionKey(atmSets);
+        }
 
-       public byte[] CreateZeroPermissionKey()
-       {
-           return AuthorizationManager.Instance.CreateZeroPermissionKey();
-       }
+        public byte[] CreateZeroPermissionKey()
+        {
+            return AuthorizationManager.Instance.CreateZeroPermissionKey();
+        }
 
-       public byte[] GetTerminalSetBitmapForAtm(long? atmId)
-       {
-           return AuthorizationManager.Instance.GetTerminalSetBitmapForAtm(atmId);
-       }
+        public byte[] GetTerminalSetBitmapForAtm(long? atmId)
+        {
+            return AuthorizationManager.Instance.GetTerminalSetBitmapForAtm(atmId);
+        }
 
     }
 }

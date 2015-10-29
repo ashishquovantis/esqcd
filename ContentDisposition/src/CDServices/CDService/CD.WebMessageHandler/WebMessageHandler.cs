@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CD.WebMessageHandler
 {
-    public class WebMessageHandler: IWebMessageHandler
+    public class WebMessageHandler : IWebMessageHandler
     {
         private ICDManager cdManager;
         private UserProfile user;
@@ -21,11 +21,6 @@ namespace CD.WebMessageHandler
             user = cdManager.GetUserProfile(Config.WebMessageHandler_Username, Config.WebMessageHandler_Password);
         }
 
-        //public string Test()
-        //{
-        //    return "pass";
-        //}
-
         public string UserExists(string userName, string formatType)
         {
             if (string.IsNullOrEmpty(formatType))
@@ -33,7 +28,7 @@ namespace CD.WebMessageHandler
 
             bool formatTypeJson = formatType.Equals("json", StringComparison.OrdinalIgnoreCase) ? true : false;
 
-            
+
             if (!string.IsNullOrWhiteSpace(userName))
             {
                 var result = cdManager.UserExists(userName, formatTypeJson);
@@ -55,7 +50,5 @@ namespace CD.WebMessageHandler
             else
                 return Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResult).ToString();
         }
-
-
     }
 }

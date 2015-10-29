@@ -9,6 +9,5 @@ namespace CD.Infrastructure.Services.App
     public interface IWebMessageHandler
     {
         string UserExists(string userName, string formatType);
-        //string Test();
     }
 }
