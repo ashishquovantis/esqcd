@@ -50,40 +50,47 @@ namespace CD.AuthorizationService
         //    return filteredIncidents;
         //}
 
-        //public byte[] CreateDefaultPermissionKey()
-        //{
-        //    return terminalSetPermissionManager.CreateDefaultPermissionKey();
-        //}
+        public byte[] CreateDefaultPermissionKey()
+        {
+            return null;
+            //return terminalSetPermissionManager.CreateDefaultPermissionKey();
+        }
 
-        //public byte[] CreateZeroPermissionKey()
-        //{
-        //    return terminalSetPermissionManager.CreateZeroPermissionKey();
-        //}
+        public byte[] CreateZeroPermissionKey()
+        {
+            return null;
+            //return terminalSetPermissionManager.CreateZeroPermissionKey();
+        }
 
-        //public byte[] CreatePermissionKey(List<AtmSet> atmSets)
-        //{
-        //    return terminalSetPermissionManager.CreatePermissionKey(atmSets);
-        //}
+        public byte[] CreatePermissionKey(List<AtmSet> atmSets)
+        {
+            return null;
+            //return terminalSetPermissionManager.CreatePermissionKey(atmSets);
+        }
 
-        //public byte[] CreatePermissionKey(short userId)
-        //{
-        //    return terminalSetPermissionManager.CreatePermissionKey(userId);
-        //}
+        public byte[] CreatePermissionKey(short userId)
+        {
+            return null;
+            //return terminalSetPermissionManager.CreatePermissionKey(userId);
+        }
 
-        //public byte[] GetPermissionKey(long atmId)
-        //{
-        //    return terminalSetPermissionManager.GetPermissionKey(atmId);
-        //}
+        public byte[] GetPermissionKey(long atmId)
+        {
+            return null;
+            //return terminalSetPermissionManager.GetPermissionKey(atmId);
+        }
 
-        //public List<AtmSet> GetUserAssignedTerminalSet(UserProfile user)
-        //{
-        //    return terminalSetPermissionManager.GetUserAssignedTerminalSet(user);
-        //}
+        public List<AtmSet> GetUserAssignedTerminalSet(UserProfile user)
+        {
+            return null;
+            //return terminalSetPermissionManager.GetUserAssignedTerminalSet(user);
+        }
 
-        //public byte[] GetTerminalSetBitmapForAtm(long? atmId)
-        //{
-        //    return terminalSetPermissionManager.GetAtmBitmap(atmId);
-        //}
+        public byte[] GetTerminalSetBitmapForAtm(long? atmId)
+        {
+            return null;
+            //return terminalSetPermissionManager.GetAtmBitmap(atmId);
+        }
 
         //#endregion Terminal set authorization
 

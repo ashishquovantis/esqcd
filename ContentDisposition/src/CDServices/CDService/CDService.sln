@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESQ.TerminalCommand", "ESQ.TerminalCommand\ESQ.TerminalCommand.csproj", "{6AA45BF4-D47F-471D-942D-CC97A30AE254}"
 EndProject
@@ -60,6 +60,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.Service.SelfHost", "CD.Service.SelfHost\CD.Service.SelfHost.csproj", "{25397F90-8148-4CA5-BF74-474237F9544B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.WebHost", "CD.WebHost\CD.WebHost.csproj", "{2EC0C6E3-0AEC-4C94-871E-7A1322A7B86B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CD.AuthorizationService", "..\AuthorizationService\CD.AuthorizationService\CD.AuthorizationService.csproj", "{8689B75B-5275-419F-A5D5-CE409543E7F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,6 +185,10 @@ Global
 		{2EC0C6E3-0AEC-4C94-871E-7A1322A7B86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EC0C6E3-0AEC-4C94-871E-7A1322A7B86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EC0C6E3-0AEC-4C94-871E-7A1322A7B86B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8689B75B-5275-419F-A5D5-CE409543E7F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

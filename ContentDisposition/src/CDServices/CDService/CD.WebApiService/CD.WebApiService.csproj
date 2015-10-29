@@ -30,14 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CD.Business.Logic">
-      <HintPath>..\CD.Business\CD.Business.Logic\bin\Debug\CD.Business.Logic.dll</HintPath>
-    </Reference>
     <Reference Include="CD.Infrastructure">
       <HintPath>..\..\..\CD.Shared\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="CD.WebMessageHandler">
-      <HintPath>..\CD.WebMessageHandler\bin\Debug\CD.WebMessageHandler.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -55,6 +49,16 @@
     <Compile Include="CDWebApiService.cs" />
     <Compile Include="HelpDeskWebApiBehaviorExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CD.Business\CD.Business.Logic\CD.Business.Logic.csproj">
+      <Project>{8f6a61fb-c1f7-4f25-acaa-1c39d7baefa4}</Project>
+      <Name>CD.Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.WebMessageHandler\CD.WebMessageHandler.csproj">
+      <Project>{08d6e2b6-80b8-4576-8826-8409de25d555}</Project>
+      <Name>CD.WebMessageHandler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

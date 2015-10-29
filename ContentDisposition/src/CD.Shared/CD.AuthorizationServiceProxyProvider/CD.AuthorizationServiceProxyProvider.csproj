@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CD.AuthorizationServiceLocalProxy">
-      <HintPath>..\CD.AuthorizationServiceLocalProxy\bin\Debug\CD.AuthorizationServiceLocalProxy.dll</HintPath>
-    </Reference>
     <Reference Include="CD.Infrastructure">
       <HintPath>..\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
     </Reference>
@@ -55,6 +52,12 @@
   <ItemGroup>
     <Compile Include="AuthorizationServiceProxyProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CD.AuthorizationServiceLocalProxy\CD.AuthorizationServiceLocalProxy.csproj">
+      <Project>{c2af1237-a6f6-4ece-b963-d67315eb100f}</Project>
+      <Name>CD.AuthorizationServiceLocalProxy</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

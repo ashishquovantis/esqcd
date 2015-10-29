@@ -34,12 +34,6 @@
     <Reference Include="CD.Infrastructure">
       <HintPath>..\..\..\CD.Shared\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="CD.Rbac.Security">
-      <HintPath>..\CD.Rbac.Security\bin\Debug\CD.Rbac.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="CD.TerminalSet.Security">
-      <HintPath>..\CD.TerminalSet.Security\bin\Debug\CD.TerminalSet.Security.dll</HintPath>
-    </Reference>
     <Reference Include="ESQ.CrossCutting">
       <HintPath>..\..\..\..\..\NetPlatform4.5\trunk\CrossCutting\Postsharp\bin\Debug\ESQ.CrossCutting.dll</HintPath>
     </Reference>
@@ -48,14 +42,6 @@
     </Reference>
     <Reference Include="PostSharp, Version=4.1.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.4.1.27\lib\net35-client\PostSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=4.1.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CD.Shared\packages\PostSharp.Patterns.Common.4.1.27\lib\net40\PostSharp.Patterns.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PostSharp.Patterns.Model, Version=4.1.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CD.Shared\packages\PostSharp.Patterns.Model.4.1.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -78,6 +64,16 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CD.Rbac.Security\CD.Rbac.Security.csproj">
+      <Project>{99126e75-37d2-4c0c-9797-59cc14bd5f98}</Project>
+      <Name>CD.Rbac.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CD.TerminalSet.Security\CD.TerminalSet.Security.csproj">
+      <Project>{95685e1a-ce5e-4d0c-93fc-ce30554e06e6}</Project>
+      <Name>CD.TerminalSet.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.4.1.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.1.27\tools\PostSharp.targets')" />

@@ -33,9 +33,6 @@
     <Reference Include="CD.Infrastructure">
       <HintPath>..\..\..\CD.Shared\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="CD.Persistance.DataProvider">
-      <HintPath>..\..\..\CD.Shared\CD.Persistance.DataProvider\bin\Debug\CD.Persistance.DataProvider.dll</HintPath>
-    </Reference>
     <Reference Include="ESQ.CrossCutting">
       <HintPath>..\..\..\..\..\NetPlatform4.5\trunk\CrossCutting\Postsharp\bin\Debug\ESQ.CrossCutting.dll</HintPath>
     </Reference>
@@ -56,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TerminalSetPermissionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CD.Shared\CD.Persistance.DataProvider\CD.Persistance.DataProvider.csproj">
+      <Project>{16dcd1b4-f480-4124-8709-90273471479b}</Project>
+      <Name>CD.Persistance.DataProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

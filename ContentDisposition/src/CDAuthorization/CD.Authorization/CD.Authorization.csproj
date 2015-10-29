@@ -31,14 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CD.AuthorizationServiceProxyProvider">
-      <HintPath>..\..\CD.Shared\CD.AuthorizationServiceProxyProvider\bin\Debug\CD.AuthorizationServiceProxyProvider.dll</HintPath>
-    </Reference>
     <Reference Include="CD.Infrastructure">
       <HintPath>..\..\CD.Shared\CD.Infrastructure\bin\Debug\CD.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="CD.TransitionsWorkflow">
-      <HintPath>..\..\CD.Shared\CD.TransitionsWorkflow\bin\Debug\CD.TransitionsWorkflow.dll</HintPath>
     </Reference>
     <Reference Include="ESQ.CrossCutting">
       <HintPath>..\..\..\..\NetPlatform4.5\trunk\CrossCutting\Postsharp\bin\Debug\ESQ.CrossCutting.dll</HintPath>
@@ -69,6 +63,16 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CD.Shared\CD.AuthorizationServiceProxyProvider\CD.AuthorizationServiceProxyProvider.csproj">
+      <Project>{4da4b0a2-e0a1-44bb-aa13-77a2e732146d}</Project>
+      <Name>CD.AuthorizationServiceProxyProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CD.Shared\CD.TransitionsWorkflow\CD.TransitionsWorkflow.csproj">
+      <Project>{130a02a4-ff8a-48dd-bfa5-c77af43aaac9}</Project>
+      <Name>CD.TransitionsWorkflow</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets" Condition="Exists('..\..\CDServices\CDService\packages\PostSharp.4.1.27\tools\PostSharp.targets')" />
