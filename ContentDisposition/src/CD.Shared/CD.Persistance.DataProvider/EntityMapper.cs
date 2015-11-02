@@ -64,6 +64,28 @@ namespace CD.Persistance.DataProvider
             return userProfile;
         }
 
+        internal static Template FillTemplateFromReader(IDataReader reader)
+        {
+            var template = new Template();
+
+            if (reader != null && !reader.IsClosed)
+            {
+                DataTable dt = reader.GetSchemaTable();
+
+                if (dt.Select("ColumnName='" + "templateId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("templateId")))
+                        template.TemplateId = reader.GetInt16(reader.GetOrdinal("templateId"));
+                if (dt.Select("ColumnName='" + "Name" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("Name")))
+                        template.Name = reader.GetString(reader.GetOrdinal("Name"));
+                if (dt.Select("ColumnName='" + "Description" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("Description")))
+                        template.Description = reader.GetString(reader.GetOrdinal("Description")); 
+            }
+
+            return template;
+        }
+
         #endregion
     }
 }

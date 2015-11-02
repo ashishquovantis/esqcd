@@ -41,12 +41,11 @@ namespace CD.Business.Logic.CD
             }
             if (userProfile != null)
             {
-                   userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
+                userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
             }
 
             return userProfile;
         }
-
 
         public OperationResult UserExists(string userName, bool formatType)
         {
@@ -59,13 +58,12 @@ namespace CD.Business.Logic.CD
 
             if (userProfile != null)
             {
-                //  userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
-                return new OperationResult() { ResultCode = ResultCodes.Ok, Result=true, Message = "Success" };
+                  userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
+                return new OperationResult() { ResultCode = ResultCodes.Ok, Result = true, Message = "Success" };
             }
 
             return new OperationResult() { ResultCode = ResultCodes.Error, Message = "faild" };
         }
-
 
         public byte[] CreateDefaultPermissionKey()
         {
@@ -87,5 +85,123 @@ namespace CD.Business.Logic.CD
             return AuthorizationManager.Instance.GetTerminalSetBitmapForAtm(atmId);
         }
 
+        public IOperationResult CreateTemplate(Template template)
+        {
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.CreateTemplate(template, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { template.TemplateId } };
+        }
+
+        public IOperationResult DeleteTemplate(string templateId)
+        {
+            //  var template=null;//GetTemplate(templateId);
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                // result = cdDataProvider.DeleteTemplate(template, transactionContext);
+                result = cdDataProvider.DeleteTemplate(templateId, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { templateId } };
+        }
+
+        public IOperationResult UpdateTemplate(string templateId, Template template)
+        {
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.UpdateTemplate(templateId, template, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { template.TemplateId } };
+        }
+
+        public Template GetTemplate(string templateId)
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTemplate(templateId, dbContext);
+
+            }
+        }
+
+        public IList<Template> GetTemplates()
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTemplates(dbContext);
+            }
+        }
+
+
+        public IOperationResult DeleteTemplateByName(string templateName)
+        {
+            //  var template=null;//GetTemplateByName(templateName);
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                // result = cdDataProvider.DeleteTemplateByName(template, transactionContext);
+                result = cdDataProvider.DeleteTemplateByName(templateName, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { templateName } };
+        }
+
+        public Template GetTemplateByName(string templateName)
+        {
+             using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTemplateByName(templateName, dbContext);
+
+            }
+        }
+
+        public IOperationResult UpdateTemplateByName(string templateName, Template template)
+        {
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.UpdateTemplateByName(templateName, template, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { template.Name } };
+        }
     }
 }

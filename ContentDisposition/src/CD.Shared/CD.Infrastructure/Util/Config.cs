@@ -17,7 +17,8 @@ namespace CD.Infrastructure.Util
 
         public static string SuperAdminGroupName { get { return GetAppSettings(SuperAdminGroupNameKey, "InternalAdminGroup-165-273-332"); } }
 
-        public static string ApplicationNameForRBAC { get { return GetAppSettings("RBAC.Main.ApplicationName", "IMS"); } }
+        // Get User
+        public static string ApplicationNameForRBAC { get { return GetAppSettings("RBAC.Main.ApplicationName", "NTS"); } }
 
         public static bool AuthorizationServiceRemoteProxy
         {
@@ -93,6 +94,81 @@ namespace CD.Infrastructure.Util
         public static string WebMessageHandler_Username { get { return GetAppSettings("WebMessageHandler_Username", "admin"); } }
 
         public static string WebMessageHandler_Password { get { return GetAppSettings("WebMessageHandler_Password", "admin"); } }
+
+        #region todo
+        public static string DataProvider_DeleteTemplate
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_DeleteTemplate",
+                    @"proc_DeleteTemplate");
+            }
+        }
+
+        public static string DataProvider_UpdateTemplate
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_UpdateTemplate",
+                    @"proc_UpdateTemplate");
+            }
+        }
+
+        public static string DataProvider_CreateTemplate
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_CreateTemplate",
+                    @"proc_InsertTemplate");
+            }
+        }
+
+        public static string DataProvider_GetTemplates
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_GetTemplates",
+                    @"proc_GetTemplates");
+            }
+        }
+
+        public static string DataProvider_GetTemplateById
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_GetTemplateById",
+                    @"proc_GetTemplateById");
+            }
+        }
+
+        public static string DataProvider_GetTemplateByName
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_GetTemplateByName",
+                    @"proc_GetTemplateByName");
+            }
+        }
+
+        public static string DataProvider_DeleteTemplateByName
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_DeleteTemplateByName",
+                    @"proc_DeleteTemplateByName");
+            }
+        }
+
+        public static string DataProvider_UpdateTemplateByName
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_UpdateTemplateByName",
+                    @"proc_UpdateTemplateByName");
+            }
+        }
+
+        #endregion
 
     }
 }

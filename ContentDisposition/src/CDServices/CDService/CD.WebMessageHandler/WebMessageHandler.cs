@@ -50,5 +50,65 @@ namespace CD.WebMessageHandler
             else
                 return Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResult).ToString();
         }
+
+        public IWebOperationResult CreateTemplate(Template template)
+        {
+ 
+            var result = cdManager.CreateTemplate(template);
+
+            return new WebOperationResult(result.Result, result.Result
+                                                                   ? "Template created successfully"
+                                                                   : result.Message,"", result.ResultCode);
+        }
+
+        public IWebOperationResult DeleteTemplate(string templateId)
+        {
+            var result = cdManager.DeleteTemplate(templateId);
+            return new WebOperationResult(result.Result, result.Result
+                                                                   ? "Template removed successfully"
+                                                                   : result.Message, "", result.ResultCode);
+        }
+
+        public IWebOperationResult UpdateTemplate(string templateId, Template template)
+        {
+            var result = cdManager.UpdateTemplate(templateId, template);
+
+            return new WebOperationResult(result.Result, result.Result
+                                                                      ? "Template updated successfully"
+                                                                      : result.Message, result.Data, result.ResultCode);
+        }
+
+        public IList<Template> GetTemplates()
+        {
+            return cdManager.GetTemplates();
+        }
+
+
+        public IWebOperationResult DeleteTemplateByName(string templateName)
+        {
+            var result = cdManager.DeleteTemplateByName(templateName);
+            return new WebOperationResult(result.Result, result.Result
+                                                                   ? "Template removed successfully"
+                                                                   : result.Message, "", result.ResultCode);
+        }
+
+        public Template GetTemplate(string templateId)
+        {
+            return cdManager.GetTemplate(templateId);
+        }
+
+        public Template GetTemplateByName(string templateName)
+        {
+            return cdManager.GetTemplateByName(templateName);
+        }
+
+        public IWebOperationResult UpdateTemplateByName(string templateName, Template template)
+        {
+            var result = cdManager.UpdateTemplateByName(templateName, template);
+
+            return new WebOperationResult(result.Result, result.Result
+                                                                      ? "Template updated successfully"
+                                                                      : result.Message, result.Data, result.ResultCode);
+        }
     }
 }

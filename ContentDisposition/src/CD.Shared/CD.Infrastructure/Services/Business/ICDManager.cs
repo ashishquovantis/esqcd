@@ -21,6 +21,15 @@ namespace CD.Infrastructure.Services.Business
         byte[] CreateZeroPermissionKey();
 
         byte[] GetTerminalSetBitmapForAtm(long? atmId);
+        
+        IList<Template> GetTemplates();
+        Template GetTemplate(string templateId);
+        Template GetTemplateByName(string templateName);
+        IOperationResult CreateTemplate(Template template);
+        IOperationResult UpdateTemplate(string templateId, Template template);
+        IOperationResult UpdateTemplateByName(string templateName, Template template);
+        IOperationResult DeleteTemplate(string templateId);
+        IOperationResult DeleteTemplateByName(string templateName);
 
     }
 }
