@@ -72,15 +72,52 @@ namespace CD.Persistance.DataProvider
             {
                 DataTable dt = reader.GetSchemaTable();
 
-                if (dt.Select("ColumnName='" + "templateId" + "'").Length > 0)
-                    if (!reader.IsDBNull(reader.GetOrdinal("templateId")))
-                        template.TemplateId = reader.GetInt16(reader.GetOrdinal("templateId"));
+                if (dt.Select("ColumnName='" + "CommandId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CommandId")))
+                        template.TemplateId = reader.GetInt16(reader.GetOrdinal("CommandId"));
                 if (dt.Select("ColumnName='" + "Name" + "'").Length > 0)
                     if (!reader.IsDBNull(reader.GetOrdinal("Name")))
                         template.Name = reader.GetString(reader.GetOrdinal("Name"));
                 if (dt.Select("ColumnName='" + "Description" + "'").Length > 0)
                     if (!reader.IsDBNull(reader.GetOrdinal("Description")))
-                        template.Description = reader.GetString(reader.GetOrdinal("Description")); 
+                        template.Description = reader.GetString(reader.GetOrdinal("Description"));
+                if (dt.Select("ColumnName='" + "CannedCommand" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CannedCommand")))
+                        template.CannedCommand = reader.GetByte(reader.GetOrdinal("CannedCommand"));
+                if (dt.Select("ColumnName='" + "AppName" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("AppName")))
+                        template.AppName = reader.GetString(reader.GetOrdinal("AppName"));
+                if (dt.Select("ColumnName='" + "Params" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("Params")))
+                        template.Params = reader.GetString(reader.GetOrdinal("Params"));
+                if (dt.Select("ColumnName='" + "UseCommandShell" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("UseCommandShell")))
+                        template.UseCommandShell = reader.GetByte(reader.GetOrdinal("UseCommandShell"));
+                if (dt.Select("ColumnName='" + "TimeoutDurationSecs" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("TimeoutDurationSecs")))
+                        template.TimeoutDurationSecs = reader.GetInt16(reader.GetOrdinal("TimeoutDurationSecs"));
+                if (dt.Select("ColumnName='" + "UserId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("UserId")))
+                        template.UserId = reader.GetInt16(reader.GetOrdinal("UserId"));
+                if (dt.Select("ColumnName='" + "WaitInterval" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("WaitInterval")))
+                        template.WaitInterval = reader.GetInt16(reader.GetOrdinal("WaitInterval"));
+                if (dt.Select("ColumnName='" + "InvokeCategory" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("InvokeCategory")))
+                        template.InvokeCategory = reader.GetString(reader.GetOrdinal("InvokeCategory"));
+                if (dt.Select("ColumnName='" + "InvokeItemName" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("InvokeItemName")))
+                        template.InvokeItemName = reader.GetString(reader.GetOrdinal("InvokeItemName"));
+                if (dt.Select("ColumnName='" + "CommandResultTestPatternText" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CommandResultTestPatternText")))
+                        template.CommandResultTestPatternText = reader.GetString(reader.GetOrdinal("CommandResultTestPatternText"));
+                if (dt.Select("ColumnName='" + "CommandResultTestPatternType" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CommandResultTestPatternType")))
+                        template.CommandResultTestPatternType = reader.GetInt16(reader.GetOrdinal("CommandResultTestPatternType"));
+                if (dt.Select("ColumnName='" + "CommandMenuGroupId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CommandMenuGroupId")))
+                        template.CommandMenuGroupId = reader.GetInt16(reader.GetOrdinal("CommandMenuGroupId"));
+
             }
 
             return template;

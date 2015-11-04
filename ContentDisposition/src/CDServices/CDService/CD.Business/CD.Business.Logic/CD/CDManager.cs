@@ -13,6 +13,7 @@ using CD.Persistance.DataProvider;
 using CD.Infrastructure.Services.App;
 using CD.Infrastructure.Poco.Enum;
 using System.Configuration;
+using CD.Infrastructure.Util;
 
 
 namespace CD.Business.Logic.CD
@@ -87,6 +88,15 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult CreateTemplate(Template template)
         {
+            if (GetTemplate(template.TemplateId.ToString()) != null)
+                return new OperationResult() { Result = false, Message = "template id already exist!", Data = new List<object> { template.TemplateId } };
+
+            if (GetTemplate(template.Name) != null)
+                return new OperationResult() { Result = false, Message = "template name already exist!", Data = new List<object> { template.TemplateId } };
+
+            // Get param
+
+            template.Params = GetParam(template);
 
             bool result;
 
@@ -105,7 +115,8 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult DeleteTemplate(string templateId)
         {
-            //  var template=null;//GetTemplate(templateId);
+            if (GetTemplate(templateId) == null)
+                return new OperationResult() { Result = false, Message = "template id does not exist!", Data = new List<object> { templateId } };
 
             bool result;
 
@@ -125,6 +136,11 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult UpdateTemplate(string templateId, Template template)
         {
+            if (GetTemplate(templateId) == null)
+                return new OperationResult() { Result = false, Message="template id does not exist!", Data = new List<object> { template.TemplateId } };
+
+            template.Params = GetParam(template);
+
             bool result;
 
             using (var transactionContext = new TransactionContext())
@@ -160,7 +176,10 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult DeleteTemplateByName(string templateName)
         {
-            //  var template=null;//GetTemplateByName(templateName);
+            // var template=null;//GetTemplateByName(templateName);
+
+            if (GetTemplateByName(templateName) == null)
+                return new OperationResult() { Result = false, Message = "template Name does not exist!", Data = new List<object> { templateName } };
 
             bool result;
 
@@ -189,6 +208,10 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult UpdateTemplateByName(string templateName, Template template)
         {
+            if (GetTemplateByName(templateName) == null)
+                return new OperationResult() { Result = false, Message = "template Name does not exist!", Data = new List<object> { template.Name} };
+
+            template.Params = GetParam(template);
             bool result;
 
             using (var transactionContext = new TransactionContext())
@@ -203,5 +226,34 @@ namespace CD.Business.Logic.CD
 
             return new OperationResult() { Result = result, Data = new List<object> { template.Name } };
         }
+
+        private string GetParam(Template template)
+        {
+            bool isOverRide = template.IsOverride ? true : false;
+
+            string atmPath = template.TemplatePath;
+            atmPath = (atmPath.EndsWith("/") || atmPath.EndsWith("\\")) && (!atmPath.EndsWith(":\\") && !atmPath.EndsWith(":/"))
+                ? atmPath.Substring(0, atmPath.Length - 1).Trim() : atmPath;
+
+            string strParams = string.Empty;
+            string strPutFileParts = "<cmd type=" + '"' + "put-file-part" + '"'
+                 + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
+                 + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
+                 + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
+                 + '"' + " param2=" + '"' + isOverRide + '"'
+                 + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + " filepartsize=" + '"' + template.FilePartSize + '"' + "/>";
+
+            string strPutFile = "<cmd type=" + '"' + "put-file" + '"'
+               + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
+               + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
+               + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
+               + '"' + " param2=" + '"' + isOverRide + '"'
+               + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + "/>";
+
+            strParams = template.IsOverride ? strPutFileParts : strPutFile;
+
+            return strParams;
+        }
+
     }
 }

@@ -82,6 +82,8 @@
     <Compile Include="Services\IDataProvider.cs" />
     <Compile Include="Services\Persistance\ICDDataProvider.cs" />
     <Compile Include="Util\Config.cs" />
+    <Compile Include="Util\Constants.cs" />
+    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Poco\Filter\" />

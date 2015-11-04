@@ -168,6 +168,79 @@ namespace CD.Infrastructure.Util
             }
         }
 
+        public static int ATMFileTransferTimeout
+        {
+            get
+            {
+                return Util.parseInt(ConfigurationManager.AppSettings["ATMFileTransferTimeout"], 30);
+            }
+
+        }
+
+
+        public static string ContentDistributionCommandResultTestPatternText
+        {
+            get
+            {
+                string strCommandResultTestPatternText = ConfigurationManager.AppSettings["ContentDistributionCommandResultTestPatternText"];
+                if (!string.IsNullOrEmpty(strCommandResultTestPatternText))
+                    return strCommandResultTestPatternText;
+
+                return "!RESULT = SUCCESS!";
+            }
+        }
+
+
+        public static int ContentDistributionCommandResultTestPatternType
+        {
+            get
+            {
+                return Util.parseInt(ConfigurationManager.AppSettings["ContentDistributionCommandResultTestPatternType"], 2);
+            }
+        }
+
+
+        public static string ATMFileTransferSourceURLParamName
+        {
+            get
+            {
+                String strURL = ConfigurationManager.AppSettings["ATMFileTransferSourceURLParamName"];
+                if (!string.IsNullOrEmpty(strURL))
+                {
+                    return strURL.Trim();
+                }
+                else
+                {
+                    return "HTTPLinkFile";
+                }
+            }
+        }
+
+        public static string FileUploadIPAddressSubstitutionParamString
+        {
+            get
+            {
+                String strParamName = ConfigurationManager.AppSettings["FileUploadIPAddressSubstitutionParamString"];
+                if (!string.IsNullOrEmpty(strParamName))
+                {
+                    return strParamName.Trim();
+                }
+                else
+                {
+                    return "%Remote Address%";
+                }
+            }
+        }
+
+        public static int ATMFileTransferPortNumber
+        {
+            get
+            {
+                return Util.parseInt(ConfigurationManager.AppSettings["ATMFileTransferPortNumber"], 10030);
+            }
+
+        }
+
         #endregion
 
     }

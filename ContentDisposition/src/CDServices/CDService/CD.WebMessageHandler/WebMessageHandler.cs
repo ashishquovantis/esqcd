@@ -71,11 +71,16 @@ namespace CD.WebMessageHandler
 
         public IWebOperationResult UpdateTemplate(string templateId, Template template)
         {
-            var result = cdManager.UpdateTemplate(templateId, template);
+         
 
-            return new WebOperationResult(result.Result, result.Result
-                                                                      ? "Template updated successfully"
-                                                                      : result.Message, result.Data, result.ResultCode);
+        
+                var result = cdManager.UpdateTemplate(templateId, template);
+
+                return new WebOperationResult(result.Result, result.Result
+                                                                          ? "Template updated successfully"
+                                                                          : result.Message, result.Data, result.ResultCode);
+         
+           
         }
 
         public IList<Template> GetTemplates()
