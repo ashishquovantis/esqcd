@@ -27,10 +27,40 @@ namespace CD.Business.Logic.CD
         {
         }
 
+        #region private
         private CDManager(ICDDataProvider cdDataProvider)
         {
             this.cdDataProvider = cdDataProvider;
         }
+
+        private string GetParam(Template template)
+        {
+            bool isOverRide = template.IsOverride ? true : false;
+
+            string atmPath = template.TemplatePath;
+            atmPath = (atmPath.EndsWith("/") || atmPath.EndsWith("\\")) && (!atmPath.EndsWith(":\\") && !atmPath.EndsWith(":/"))
+                ? atmPath.Substring(0, atmPath.Length - 1).Trim() : atmPath;
+
+            string strParams = string.Empty;
+            string strPutFileParts = "<cmd type=" + '"' + "put-file-part" + '"'
+                 + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
+                 + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
+                 + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
+                 + '"' + " param2=" + '"' + isOverRide + '"'
+                 + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + " filepartsize=" + '"' + template.FilePartSize + '"' + "/>";
+
+            string strPutFile = "<cmd type=" + '"' + "put-file" + '"'
+               + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
+               + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
+               + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
+               + '"' + " param2=" + '"' + isOverRide + '"'
+               + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + "/>";
+
+            strParams = template.IsOverride ? strPutFileParts : strPutFile;
+
+            return strParams;
+        }
+        #endregion
 
         public UserProfile GetUserProfile(string username, string password)
         {
@@ -59,7 +89,7 @@ namespace CD.Business.Logic.CD
 
             if (userProfile != null)
             {
-                  userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
+                userProfile.PermissionKey = AuthorizationManager.Instance.GetTerminalSetBitmap(userProfile);
                 return new OperationResult() { ResultCode = ResultCodes.Ok, Result = true, Message = "Success" };
             }
 
@@ -91,11 +121,10 @@ namespace CD.Business.Logic.CD
             if (GetTemplate(template.TemplateId.ToString()) != null)
                 return new OperationResult() { Result = false, Message = "template id already exist!", Data = new List<object> { template.TemplateId } };
 
-            if (GetTemplate(template.Name) != null)
-                return new OperationResult() { Result = false, Message = "template name already exist!", Data = new List<object> { template.TemplateId } };
+            if (GetTemplateByName(template.Name) != null)
+                return new OperationResult() { Result = false, Message = "template name already exist!", Data = new List<object> { template.Name } };
 
             // Get param
-
             template.Params = GetParam(template);
 
             bool result;
@@ -115,8 +144,21 @@ namespace CD.Business.Logic.CD
 
         public IOperationResult DeleteTemplate(string templateId)
         {
-            if (GetTemplate(templateId) == null)
+            var tempate = GetTemplate(templateId);
+
+            if (tempate == null)
                 return new OperationResult() { Result = false, Message = "template id does not exist!", Data = new List<object> { templateId } };
+
+            bool IsCommandScheduledAgainstTemplate = false;
+            using (var dbContext = new DbContext())
+            {
+                IsCommandScheduledAgainstTemplate = cdDataProvider.IsCommandScheduledAgainstTemplate(tempate.Name, dbContext);
+            }
+
+            if (IsCommandScheduledAgainstTemplate)
+            {
+                return new OperationResult() { Result = false, Message = "Template could not be deleted because there are commands scheduled against this template.Please delete scheduled commands against this template!", Data = new List<object> { templateId } };
+            }
 
             bool result;
 
@@ -137,7 +179,7 @@ namespace CD.Business.Logic.CD
         public IOperationResult UpdateTemplate(string templateId, Template template)
         {
             if (GetTemplate(templateId) == null)
-                return new OperationResult() { Result = false, Message="template id does not exist!", Data = new List<object> { template.TemplateId } };
+                return new OperationResult() { Result = false, Message = "template id does not exist!", Data = new List<object> { template.TemplateId } };
 
             template.Params = GetParam(template);
 
@@ -173,13 +215,23 @@ namespace CD.Business.Logic.CD
             }
         }
 
-
         public IOperationResult DeleteTemplateByName(string templateName)
         {
             // var template=null;//GetTemplateByName(templateName);
 
             if (GetTemplateByName(templateName) == null)
                 return new OperationResult() { Result = false, Message = "template Name does not exist!", Data = new List<object> { templateName } };
+
+            bool IsCommandScheduledAgainstTemplate = false;
+            using (var dbContext = new DbContext())
+            {
+                IsCommandScheduledAgainstTemplate = cdDataProvider.IsCommandScheduledAgainstTemplate(templateName, dbContext);
+            }
+
+            if (IsCommandScheduledAgainstTemplate)
+            {
+                return new OperationResult() { Result = false, Message = "Template could not be deleted because there are commands scheduled against this template.Please delete scheduled commands against this template!", Data = new List<object> { templateName } };
+            }
 
             bool result;
 
@@ -199,7 +251,7 @@ namespace CD.Business.Logic.CD
 
         public Template GetTemplateByName(string templateName)
         {
-             using (var dbContext = new DbContext())
+            using (var dbContext = new DbContext())
             {
                 return cdDataProvider.GetTemplateByName(templateName, dbContext);
 
@@ -209,7 +261,7 @@ namespace CD.Business.Logic.CD
         public IOperationResult UpdateTemplateByName(string templateName, Template template)
         {
             if (GetTemplateByName(templateName) == null)
-                return new OperationResult() { Result = false, Message = "template Name does not exist!", Data = new List<object> { template.Name} };
+                return new OperationResult() { Result = false, Message = "template Name does not exist!", Data = new List<object> { template.Name } };
 
             template.Params = GetParam(template);
             bool result;
@@ -227,33 +279,88 @@ namespace CD.Business.Logic.CD
             return new OperationResult() { Result = result, Data = new List<object> { template.Name } };
         }
 
-        private string GetParam(Template template)
+        public IList<FilterDefs> GetTerminalFilters()
         {
-            bool isOverRide = template.IsOverride ? true : false;
-
-            string atmPath = template.TemplatePath;
-            atmPath = (atmPath.EndsWith("/") || atmPath.EndsWith("\\")) && (!atmPath.EndsWith(":\\") && !atmPath.EndsWith(":/"))
-                ? atmPath.Substring(0, atmPath.Length - 1).Trim() : atmPath;
-
-            string strParams = string.Empty;
-            string strPutFileParts = "<cmd type=" + '"' + "put-file-part" + '"'
-                 + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
-                 + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
-                 + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
-                 + '"' + " param2=" + '"' + isOverRide + '"'
-                 + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + " filepartsize=" + '"' + template.FilePartSize + '"' + "/>";
-
-            string strPutFile = "<cmd type=" + '"' + "put-file" + '"'
-               + " name=" + '"' + "%" + Config.ATMFileTransferSourceURLParamName + "%"
-               + '"' + " ipaddress=" + '"' + Config.FileUploadIPAddressSubstitutionParamString + '"'
-               + " port=" + '"' + Config.ATMFileTransferPortNumber + '"' + " param1=" + '"' + atmPath
-               + '"' + " param2=" + '"' + isOverRide + '"'
-               + " timeout=" + '"' + Config.ATMFileTransferTimeout + '"' + "/>";
-
-            strParams = template.IsOverride ? strPutFileParts : strPutFile;
-
-            return strParams;
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTerminalFilters(dbContext);
+            }
         }
+
+        public IList<Terminal> GetTerminalSets()
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTerminalSets(dbContext);
+            }
+        }
+
+        public IList<Terminal> GetTerminals()
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetTerminals(dbContext);
+            }
+        }
+
+        public IOperationResult CreateTerminalFilter(FilterDefs terminalFilter)
+        {
+            if (GetTerminalFilters().Any(c => c.FilterId == terminalFilter.FilterId || c.FilterName == terminalFilter.FilterName))
+                return new OperationResult() { Result = false, Message = "Terminal Filter already exist!", Data = new List<object> { terminalFilter.FilterId, terminalFilter.FilterName } };
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.CreateTerminalFilter(terminalFilter, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> { terminalFilter.FilterId } };
+        }
+
+        public IOperationResult DeleteTerminalFilter(string filterId)
+        {
+            if (!GetTerminalFilters().Any(c => c.FilterId == Convert.ToInt32(filterId)))
+                return new OperationResult() { Result = false, Message = "Terminal Filter does not exist!", Data = new List<object> { filterId } };
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.DeleteTerminalFilter(filterId, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+            return new OperationResult() { Result = result, Data = new List<object> { filterId } };
+        }
+
+        public IOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter)
+        {
+            if (!GetTerminalFilters().Any(c => c.FilterId == Convert.ToInt32(filterId)))
+                return new OperationResult() { Result = false, Message = "Terminal Filter does not exist!", Data = new List<object> { filterId } };
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.UpdateTerminalFilter(filterId, terminalFilter, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+            return new OperationResult() { Result = result, Data = new List<object> { terminalFilter.FilterId } };
+        }
+
 
     }
 }

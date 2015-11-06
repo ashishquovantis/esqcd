@@ -72,5 +72,44 @@ namespace CD.WebApiService
         {
             return (WebOperationResult)webMessageHandler.UpdateTemplateByName(templateName, template);
         }
+
+        public IList<FilterDefs> GetTerminalFilters()
+        {
+            return webMessageHandler.GetTerminalFilters();
+        }
+
+        public IList<Terminal> GetTerminalSets()
+        {
+            return webMessageHandler.GetTerminalSets();
+        }
+
+        public IList<Terminal> GetTerminals()
+        {
+            return webMessageHandler.GetTerminals();
+        }
+
+        public WebOperationResult CreateTerminalFilter(FilterDefs terminalFilter)
+        {
+            return (WebOperationResult)webMessageHandler.CreateTerminalFilter(terminalFilter);
+        }
+
+        public WebOperationResult DeleteTerminalFilter(string filterId)
+        {
+            return (WebOperationResult)webMessageHandler.DeleteTerminalFilter(filterId);
+        }
+
+        public WebOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter)
+        {
+           return (WebOperationResult)webMessageHandler.UpdateTerminalFilter(filterId, terminalFilter);
+        }
+
+        //private string Result(IWebOperationResult result, bool formatTypeJson)
+        //{
+        //    string jsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+        //    if (formatTypeJson)
+        //        return jsonResult;
+        //    else
+        //        return Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResult).ToString();
+        //}
     }
 }

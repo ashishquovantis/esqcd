@@ -20,5 +20,13 @@ namespace CD.Infrastructure.Services.Persistance
         bool DeleteTemplate(string templateId, ITransactionContext transactionContext);
         bool UpdateTemplateByName(string templateName, Template template, ITransactionContext transactionContext);
         bool DeleteTemplateByName(string templateName, ITransactionContext transactionContext);
+        IList<Terminal> GetTerminals(IDbContext dbContext);
+        IList<Terminal> GetTerminalSets(IDbContext dbContext);
+        IList<FilterDefs> GetTerminalFilters(IDbContext dbContext);
+
+        bool CreateTerminalFilter(FilterDefs terminalFilter, ITransactionContext transactionContext);
+        bool DeleteTerminalFilter(string filterId, ITransactionContext transactionContext);
+        bool UpdateTerminalFilter(string filterId, FilterDefs terminalFilter, ITransactionContext transactionContext);
+        bool IsCommandScheduledAgainstTemplate(string templateName, IDbContext dbContext);
     }
 }

@@ -65,7 +65,10 @@
     <Compile Include="Poco\Enum\TerminalTypes.cs" />
     <Compile Include="Poco\Enum\UserAuthenticationMode.cs" />
     <Compile Include="Poco\Incident.cs" />
+    <Compile Include="Poco\Package.cs" />
     <Compile Include="Poco\Template.cs" />
+    <Compile Include="Poco\Terminal.cs" />
+    <Compile Include="Poco\TerminalFilter.cs" />
     <Compile Include="Poco\Transition.cs" />
     <Compile Include="Poco\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,6 +30,14 @@ namespace CD.Infrastructure.Services.Business
         IOperationResult UpdateTemplateByName(string templateName, Template template);
         IOperationResult DeleteTemplate(string templateId);
         IOperationResult DeleteTemplateByName(string templateName);
+        IList<Terminal> GetTerminals();
+        IList<Terminal> GetTerminalSets();
+        IList<FilterDefs> GetTerminalFilters();
+        IOperationResult CreateTerminalFilter(FilterDefs terminalFilter);
+        IOperationResult DeleteTerminalFilter(string filterId);
+        IOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter);
+
+
 
     }
 }

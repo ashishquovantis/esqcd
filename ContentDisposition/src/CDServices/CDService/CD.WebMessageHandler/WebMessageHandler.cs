@@ -53,7 +53,7 @@ namespace CD.WebMessageHandler
 
         public IWebOperationResult CreateTemplate(Template template)
         {
- 
+            template.UserId = user.UserId;
             var result = cdManager.CreateTemplate(template);
 
             return new WebOperationResult(result.Result, result.Result
@@ -71,23 +71,16 @@ namespace CD.WebMessageHandler
 
         public IWebOperationResult UpdateTemplate(string templateId, Template template)
         {
-         
-
-        
                 var result = cdManager.UpdateTemplate(templateId, template);
-
                 return new WebOperationResult(result.Result, result.Result
                                                                           ? "Template updated successfully"
                                                                           : result.Message, result.Data, result.ResultCode);
-         
-           
         }
 
         public IList<Template> GetTemplates()
         {
             return cdManager.GetTemplates();
         }
-
 
         public IWebOperationResult DeleteTemplateByName(string templateName)
         {
@@ -110,6 +103,50 @@ namespace CD.WebMessageHandler
         public IWebOperationResult UpdateTemplateByName(string templateName, Template template)
         {
             var result = cdManager.UpdateTemplateByName(templateName, template);
+
+            return new WebOperationResult(result.Result, result.Result
+                                                                      ? "Template updated successfully"
+                                                                      : result.Message, result.Data, result.ResultCode);
+        }
+
+        public IList<FilterDefs> GetTerminalFilters()
+        {
+            return cdManager.GetTerminalFilters();
+        }
+
+        public IList<Terminal> GetTerminalSets()
+        {
+            return cdManager.GetTerminalSets();
+        }
+
+        public IList<Terminal> GetTerminals()
+        {
+            return cdManager.GetTerminals();
+        }
+
+        public WebOperationResult CreateTerminalFilter(FilterDefs terminalFilter)
+        {
+            terminalFilter.CreatedBy= user.UserId;
+
+            var result= cdManager.CreateTerminalFilter(terminalFilter);
+            return new WebOperationResult(result.Result, result.Result
+                                                              ? "Template created successfully"
+                                                              : result.Message, "", result.ResultCode);
+
+        }
+
+        public WebOperationResult DeleteTerminalFilter(string filterId)
+        {
+            var result = cdManager.DeleteTerminalFilter(filterId);
+            return new WebOperationResult(result.Result, result.Result
+                                                                   ? "Template removed successfully"
+                                                                   : result.Message, "", result.ResultCode);
+        }
+
+        public WebOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter)
+        {
+            terminalFilter.CreatedBy = user.UserId;
+            var result = cdManager.UpdateTerminalFilter(filterId, terminalFilter);
 
             return new WebOperationResult(result.Result, result.Result
                                                                       ? "Template updated successfully"

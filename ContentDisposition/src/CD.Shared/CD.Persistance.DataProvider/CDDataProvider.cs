@@ -37,15 +37,12 @@ namespace CD.Persistance.DataProvider
         public bool CreateTemplate(Template template, ITransactionContext transactionContext)
         {
             string sql = Config.DataProvider_CreateTemplate;
-     
+
             var cmd = new SqlCommand(sql, transactionContext.Connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
             var prmreturnValue = cmd.Parameters.Add("@returnValue", SqlDbType.SmallInt);
             prmreturnValue.Direction = ParameterDirection.Output;
-
-            var prmtemplateId = cmd.Parameters.Add("@CommandId", SqlDbType.SmallInt);
-            prmtemplateId.Value = DataHelper.SetValue(template.TemplateId);
 
             var prmName = cmd.Parameters.Add("@Name", SqlDbType.NVarChar);
             prmName.Value = DataHelper.SetValue(template.Name);
@@ -53,13 +50,13 @@ namespace CD.Persistance.DataProvider
             var prmDescription = cmd.Parameters.Add("@Description", SqlDbType.NVarChar);
             prmDescription.Value = DataHelper.SetValue(template.Description);
 
-            cmd.Parameters.AddWithValue("@UseCommandShell",Constants.UseCommandShell);
+            cmd.Parameters.AddWithValue("@UseCommandShell", Constants.UseCommandShell);
             cmd.Parameters.AddWithValue("@CannedCommand", Constants.CannedCommand);
             cmd.Parameters.AddWithValue("@CommandResultTestPatternText", Config.ContentDistributionCommandResultTestPatternText);
             cmd.Parameters.AddWithValue("@CommandResultTestPatternType", Config.ContentDistributionCommandResultTestPatternType);
             cmd.Parameters.AddWithValue("@TimeoutDurationSecs", Config.ATMFileTransferTimeout);
             cmd.Parameters.AddWithValue("@WaitInterval", Constants.WaitInterval);
-            cmd.Parameters.AddWithValue("@UserId", 112);   // get userId 
+            cmd.Parameters.AddWithValue("@UserId", template.UserId);   // get userId 
             cmd.Parameters.AddWithValue("@AppName", Constants.AppName);
             cmd.Parameters.AddWithValue("@Params", template.Params);
             cmd.Parameters.AddWithValue("@InvokeCategory", Constants.InvokeCategory);
@@ -89,6 +86,23 @@ namespace CD.Persistance.DataProvider
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        public bool IsCommandScheduledAgainstTemplate(string templateName, IDbContext dbContext)
+        {
+            string sql = string.Format(Config.DataProvider_GetCommandScheduledAgainstTemplate, templateName);
+            SqlCommand cmd = new SqlCommand(sql, dbContext.Connection);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    if (Convert.ToInt32(reader.GetValue(0)) > 0)
+                        return true;
+                }
+            }
+            return false;
+        }
+
 
         public bool UpdateTemplate(string templateId, Template template, ITransactionContext transactionContext)
         {
@@ -203,6 +217,133 @@ namespace CD.Persistance.DataProvider
                 cmd.Parameters.AddWithValue("@Params", template.Params);
                 cmd.Parameters.AddWithValue("@CommandResultTestPatternText", Config.ContentDistributionCommandResultTestPatternText);
                 cmd.Parameters.AddWithValue("@CommandResultTestPatternType", Config.ContentDistributionCommandResultTestPatternType);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public IList<FilterDefs> GetTerminalFilters(IDbContext dbContext)
+        {
+            IList<FilterDefs> terminalFilterList = new List<FilterDefs>();
+            var sql = String.Format(Config.DataProvider_GetTerminalsFilter);
+
+            var cmd = new SqlCommand(sql, dbContext.Connection);
+            cmd.CommandType = CommandType.Text;
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var terminalFilter = EntityMapper.FillTerminalFilterFromReader(reader);
+                    terminalFilterList.Add(terminalFilter);
+
+                }
+            }
+            return terminalFilterList;
+        }
+
+        public IList<Terminal> GetTerminalSets(IDbContext dbContext)
+        {
+            IList<Terminal> terminalList = new List<Terminal>();
+            var sql = String.Format(Config.DataProvider_GetTerminalsSet);
+
+            var cmd = new SqlCommand(sql, dbContext.Connection);
+            cmd.CommandType = CommandType.Text;
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var terminal = EntityMapper.FillTerminalFromReader(reader);
+                    terminalList.Add(terminal);
+
+                }
+            }
+            return terminalList;
+
+        }
+
+        public IList<Terminal> GetTerminals(IDbContext dbContext)
+        {
+            IList<Terminal> terminalList = new List<Terminal>();
+            var sql = String.Format(Config.DataProvider_GetTerminals);
+
+            var cmd = new SqlCommand(sql, dbContext.Connection);
+            cmd.CommandType = CommandType.Text;
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var terminal = EntityMapper.FillTerminalFromReader(reader);
+                    terminalList.Add(terminal);
+
+                }
+            }
+            return terminalList;
+        }
+
+        public bool CreateTerminalFilter(FilterDefs terminalFilter, ITransactionContext transactionContext)
+        {
+            string sql = string.Format(Config.DataProvider_InsertTerminalFilter);
+
+            using (var cmd = new SqlCommand(sql, transactionContext.Connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                var prmreturnValue = cmd.Parameters.Add("@returnValue", SqlDbType.SmallInt);
+                prmreturnValue.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@FilterName", terminalFilter.FilterName);
+                cmd.Parameters.AddWithValue("@Description", terminalFilter.Description);
+                cmd.Parameters.AddWithValue("@SQL", terminalFilter.SQL);
+                cmd.Parameters.AddWithValue("@FilterExpression", terminalFilter.FilterExpression);
+                cmd.Parameters.AddWithValue("@CreatedOn", terminalFilter.CreatedOn);
+                cmd.Parameters.AddWithValue("@CreatedBy", terminalFilter.CreatedBy);
+                cmd.Parameters.AddWithValue("@VisibleToOthers", terminalFilter.VisibleToOthers);
+                cmd.Parameters.AddWithValue("@ShownOnModules", terminalFilter.ShownOnModules);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool DeleteTerminalFilter(string filterId, ITransactionContext transactionContext)
+        {
+            string sql = string.Format(Config.DataProvider_DeleteTerminalFilter, filterId);
+
+            using (var cmd = new SqlCommand(sql, transactionContext.Connection))
+            {
+                cmd.CommandType = CommandType.Text;
+
+                //var prmreturnValue = cmd.Parameters.Add("@returnValue", SqlDbType.SmallInt);
+                //prmreturnValue.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@FilterId", filterId);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool UpdateTerminalFilter(string filterId, FilterDefs terminalFilter, ITransactionContext transactionContext)
+        {
+            string sql = string.Format(Config.DataProvider_UpdateTerminalFilter);
+
+            using (var cmd = new SqlCommand(sql, transactionContext.Connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                var prmreturnValue = cmd.Parameters.Add("@returnValue", SqlDbType.SmallInt);
+                prmreturnValue.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@FilterId", terminalFilter.FilterId);
+                cmd.Parameters.AddWithValue("@FilterName", terminalFilter.FilterName);
+                cmd.Parameters.AddWithValue("@Description", terminalFilter.Description);
+                cmd.Parameters.AddWithValue("@SQL", terminalFilter.SQL);
+                cmd.Parameters.AddWithValue("@FilterExpression", terminalFilter.FilterExpression);
+                cmd.Parameters.AddWithValue("@CreatedOn", terminalFilter.CreatedOn);
+                cmd.Parameters.AddWithValue("@CreatedBy", terminalFilter.CreatedBy);
+                cmd.Parameters.AddWithValue("@VisibleToOthers", terminalFilter.VisibleToOthers);
+                cmd.Parameters.AddWithValue("@ShownOnModules", terminalFilter.ShownOnModules);
 
                 return cmd.ExecuteNonQuery() > 0;
             }

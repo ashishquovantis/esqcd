@@ -22,13 +22,14 @@ namespace CD.Infrastructure.Services.App
         string UserExists(string userName, string formatType);
 
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/")]
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates")]
         [OperationContract]
         IList<Template> GetTemplates();
 
-        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "content/templates/id/{templateId}")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json,UriTemplate = "content/templates/{id}")]
         [OperationContract]
-        Template GetTemplate(string templateId);
+        Template GetTemplate(string id);
 
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
           ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/create")]
@@ -36,16 +37,17 @@ namespace CD.Infrastructure.Services.App
         WebOperationResult CreateTemplate(Template template);
 
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/id/{templateId}/modify")]
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/{id}/modify")]
         [OperationContract]
-        WebOperationResult UpdateTemplate(string templateId, Template template);
+        WebOperationResult UpdateTemplate(string id, Template template);
 
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/id/{templateId}/delete")]
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/{id}/delete")]
         [OperationContract]
-        WebOperationResult DeleteTemplate(string templateId);
+        WebOperationResult DeleteTemplate(string id);
 
-        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "content/templates/name/{templateName}")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/name/{templateName}")]
         [OperationContract]
         Template GetTemplateByName(string templateName);
 
@@ -55,11 +57,100 @@ namespace CD.Infrastructure.Services.App
         WebOperationResult DeleteTemplateByName(string templateName);
 
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-     ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/name/{templateName}/modify")]
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/templates/name/{templateName}/modify")]
         [OperationContract]
         WebOperationResult UpdateTemplateByName(string templateName, Template template);
 
 
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals")]
+        [OperationContract]
+        IList<Terminal> GetTerminals();
+
+
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+         ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalSets")]
+        [OperationContract]
+        IList<Terminal> GetTerminalSets();
+
+
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters")]
+        [OperationContract]
+        IList<FilterDefs> GetTerminalFilters();
+
+        #region Terminal
+
+        ////Preview terminals by term set
+        //[WebGet(BodyStyle = WebMessag eBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        // ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalSets/{id}/terminals")]
+        //[OperationContract]
+        //IList<Terminal> GetAtmsPartByTerminalSetId();
+
+        ////Preview terminals by term filter
+        //[WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        // ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters/{id}/terminals")]
+        //[OperationContract]
+        //IList<FilterDefs> GetAtmsPartByTerminalFilterId();
+
+        ////Preview terminals by filter condition
+        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        // ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters/terminals")]
+        //[OperationContract]
+        //FilterDefs GetTerminalByFilterCondition(FilterDefs filter);
+
+        //Modify Terminal Filter
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+         ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters/{id}/modify")]
+        [OperationContract]
+        WebOperationResult UpdateTerminalFilter(string id, FilterDefs terminalFilter);
+
+        //Delete Terminal Filter
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters/{id}/delete")]
+        [OperationContract]
+        WebOperationResult DeleteTerminalFilter(string id);
+
+
+        [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+         ResponseFormat = WebMessageFormat.Json, UriTemplate = "asset/terminals/terminalFilters/create")]
+        [OperationContract]
+        WebOperationResult CreateTerminalFilter(FilterDefs terminalFilter);
+
+        #endregion
+
+        #region package
+        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages")]
+        // [OperationContract]
+        // IList<Package> GetPackages();
+
+        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        // ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items")]
+        // [OperationContract]
+        // IList<Package> GetPackagesWithContent();
+
+        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/create")]
+        // [OperationContract]
+        // WebOperationResult CreatePackage(Package package);
+
+        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/modify")]
+        // [OperationContract]
+        // WebOperationResult UpdatePackage(string id,Package package);
+
+        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/delete")]
+        // [OperationContract]
+        // WebOperationResult DeletePackage(string id);
+
+        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items/{ItemId}")]
+        // [OperationContract]
+        // Package GetPackageItem(string id,string ItemId);
+
+        #endregion
 
     }
 }

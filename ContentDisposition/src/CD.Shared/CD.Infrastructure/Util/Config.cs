@@ -18,7 +18,7 @@ namespace CD.Infrastructure.Util
         public static string SuperAdminGroupName { get { return GetAppSettings(SuperAdminGroupNameKey, "InternalAdminGroup-165-273-332"); } }
 
         // Get User
-        public static string ApplicationNameForRBAC { get { return GetAppSettings("RBAC.Main.ApplicationName", "NTS"); } }
+        public static string ApplicationNameForRBAC { get { return GetAppSettings("RBAC.Main.ApplicationName", "IMS"); } }
 
         public static bool AuthorizationServiceRemoteProxy
         {
@@ -101,9 +101,19 @@ namespace CD.Infrastructure.Util
             get
             {
                 return GetAppSettings("DataProvider_DeleteTemplate",
-                    @"proc_DeleteTemplate");
+                    @"proc_DeleteTemplateById");
             }
         }
+
+        public static string DataProvider_DeleteTemplateByName
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_DeleteTemplateByName",
+                    @"proc_DeleteTemplateByName");
+            }
+        }
+
 
         public static string DataProvider_UpdateTemplate
         {
@@ -147,15 +157,6 @@ namespace CD.Infrastructure.Util
             {
                 return GetAppSettings("DataProvider_GetTemplateByName",
                     @"proc_GetTemplateByName");
-            }
-        }
-
-        public static string DataProvider_DeleteTemplateByName
-        {
-            get
-            {
-                return GetAppSettings("DataProvider_DeleteTemplateByName",
-                    @"proc_DeleteTemplateByName");
             }
         }
 
@@ -240,6 +241,133 @@ namespace CD.Infrastructure.Util
             }
 
         }
+
+        public static string DataProvider_GetTerminals   //need to review 
+        {
+            get
+            {
+                String permSql = String.Format
+            (
+                @"Select distinct (case when (select COUNT(*) from ATMSETDEFS ) = (select COUNT(*) from ATMSETDEFS (NOLOCK),PERM (NOLOCK)
+                                                                                    where ATMSETDEFS.AtmSetId = PERM.ObjectId and 
+                                                                                    PERM.ObjectType = {0} and PERM.UserId = {2} and PERM.rView = 1) 
+				                    then ' 1 = 1 ' 
+				                    else  ATMSETDEFS.SQL end ) as SQL 
+                from ATMSETDEFS (NOLOCK),PERM (NOLOCK) where ATMSETDEFS.AtmSetId = PERM.ObjectId and 
+                PERM.ObjectType = {0} and PERM.UserId = {2} and PERM.rView = 1",
+                1,
+                77,
+                111
+            );
+
+                return permSql;
+            }
+        }
+
+        public static string DataProvider_GetTerminalsSet     // right query
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_GetTerminalsSet",
+                    @"SELECT *  FROM ATMSETDEFS (NOLOCK)");
+
+                //if (!ucr.isAdmin)
+                //                       {
+                //                           sqlTerminalSets += "where atmsetid in (select objectid from perm (NOLOCK) where " +
+                //                                              "objecttype=1 AND RVIEW=1 and userid= " + ucr.uid +
+                //                                              ") order by atmsetid";
+                //                       }
+                //                       else
+                //                       {
+                //                           sqlTerminalSets += " order by atmsetid";
+                //                       }
+            }
+        }
+
+        //public static List<string> EnableBlackListedTerminalsScreenList
+        //{
+        //    get
+        //    {
+        //        List<string> BlackListedTerminalsScreenList = new List<string>();
+        //     //   string strBlackListedTerminalsScreenList = clsAppConfig.GetApplicationParameterValue("EnableBlackListedTerminalsOnScreens");   //1
+
+        //        if (!string.IsNullOrEmpty(strBlackListedTerminalsScreenList))
+        //        {
+        //            BlackListedTerminalsScreenList = strBlackListedTerminalsScreenList.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+        //        }
+        //        return BlackListedTerminalsScreenList;
+        //    }
+
+        //}
+
+        //public static string GetApplicationParameterValue(string paramName)      //clsAppConfig.cs  //1
+        //{
+        //    object obj = HttpContext.Current != null ? HttpContext.Current.Session["APP_PARAMETERS"] : null;
+        //    Dictionary<string, string> parameters = obj as Dictionary<string, string> ??
+        //                                            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        //    if (parameters.Count <= 0)
+        //    {
+        //        using (SqlConnection con = Util.openDBConnection(null))
+        //        {
+        //            parameters = GetAppParametersList(con, sqlAppParams);
+        //            if (HttpContext.Current != null)
+        //                HttpContext.Current.Session["APP_PARAMETERS"] = parameters;
+        //        }
+        //    }
+
+        //    if (parameters.ContainsKey(paramName))
+        //    {
+        //        return parameters[paramName];
+        //    }
+        //    return string.Empty;
+        //}
+
+        public static string DataProvider_GetTerminalsFilter
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_GetTerminalsFilter",
+                  @"select * from FILTERDEFS (NOLOCK) where 1=2");
+            }
+        }
+
+        public static string DataProvider_UpdateTerminalFilter
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_UpdateTerminalFilter",
+                  @"proc_UpdateTerminalFilter");
+            }
+        }
+
+        public static string DataProvider_InsertTerminalFilter
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_InsertTerminalFilter",
+                  @"proc_InsertTerminalFilter");
+            }
+        }
+
+        public static string DataProvider_DeleteTerminalFilter
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_DeleteTerminalFilter",
+                  @"Delete from [FilterDefs] where FilterId='{0}'");
+            }
+        }
+
+        public static string DataProvider_GetCommandScheduledAgainstTemplate
+        {
+            get
+            {
+                return GetAppSettings("DataProvider_DeleteTerminalFilter",
+                  @"select count(taskid) from taskdefs (NOLOCK) where actionData  like '%Command:{0}%'");
+            }
+        }
+
+        
 
         #endregion
 

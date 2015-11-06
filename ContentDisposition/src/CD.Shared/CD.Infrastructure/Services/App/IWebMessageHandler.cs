@@ -19,5 +19,11 @@ namespace CD.Infrastructure.Services.App
         IWebOperationResult UpdateTemplateByName(string templateName, Template template);
         IWebOperationResult DeleteTemplate(string templateId);
         IWebOperationResult DeleteTemplateByName(string templateName);
+        IList<Terminal> GetTerminals();
+        IList<Terminal> GetTerminalSets();
+        IList<FilterDefs> GetTerminalFilters();
+        WebOperationResult CreateTerminalFilter(FilterDefs terminalFilter);
+        WebOperationResult DeleteTerminalFilter(string filterId);
+        WebOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter);
     }
 }

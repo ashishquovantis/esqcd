@@ -124,5 +124,78 @@ namespace CD.Persistance.DataProvider
         }
 
         #endregion
+
+        internal static Terminal FillTerminalFromReader(SqlDataReader reader)
+        {
+            var terminal = new Terminal();
+
+            if (reader != null && !reader.IsClosed)
+            {
+                DataTable dt = reader.GetSchemaTable();
+                if (dt.Select("ColumnName='" + "AtmSetId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("AtmSetId")))
+                        terminal.AtmSetId = reader.GetInt16(reader.GetOrdinal("AtmSetId"));
+                if (dt.Select("ColumnName='" + "Name" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("Name")))
+                        terminal.Name = reader.GetString(reader.GetOrdinal("Name"));
+                //if (dt.Select("ColumnName='" + "Description" + "'").Length > 0)
+                //    if (!reader.IsDBNull(reader.GetOrdinal("Description")))
+                //        terminal.Description = reader.GetString(reader.GetOrdinal("Description"));
+                //if (dt.Select("ColumnName='" + "QueryBlob" + "'").Length > 0)
+                //    if (!reader.IsDBNull(reader.GetOrdinal("QueryBlob")))
+                //        terminal.QueryBlob = reader.GetString(reader.GetOrdinal("QueryBlob"));
+                //if (dt.Select("ColumnName='" + "TermIds" + "'").Length > 0)
+                //    if (!reader.IsDBNull(reader.GetOrdinal("TermIds")))
+                //        terminal.TermIds = reader.GetString(reader.GetOrdinal("TermIds"));
+                if (dt.Select("ColumnName='" + "SQL" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("SQL")))
+                        terminal.SQL = reader.GetString(reader.GetOrdinal("SQL"));
+                //if (dt.Select("ColumnName='" + "UserId" + "'").Length > 0)
+                //    if (!reader.IsDBNull(reader.GetOrdinal("UserId")))
+                //        terminal.UserId = reader.GetInt64(reader.GetOrdinal("UserId"));
+
+            }
+
+            return terminal;
+        }
+
+        internal static FilterDefs FillTerminalFilterFromReader(SqlDataReader reader)
+        {
+            var terminalFilter = new FilterDefs();
+
+            if (reader != null && !reader.IsClosed)
+            {
+                DataTable dt = reader.GetSchemaTable();
+                if (dt.Select("ColumnName='" + "FilterId" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("FilterId")))
+                        terminalFilter.FilterId = reader.GetInt32(reader.GetOrdinal("FilterId"));
+                if (dt.Select("ColumnName='" + "FilterName" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("FilterName")))
+                        terminalFilter.FilterName = reader.GetString(reader.GetOrdinal("FilterName"));
+                if (dt.Select("ColumnName='" + "Description" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("Description")))
+                        terminalFilter.Description = reader.GetString(reader.GetOrdinal("Description"));
+                if (dt.Select("ColumnName='" + "SQL" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("SQL")))
+                        terminalFilter.SQL = reader.GetString(reader.GetOrdinal("SQL"));
+                if (dt.Select("ColumnName='" + "FilterExpression" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("FilterExpression")))
+                        terminalFilter.FilterExpression = reader.GetString(reader.GetOrdinal("FilterExpression"));
+                if (dt.Select("ColumnName='" + "CreatedOn" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CreatedOn")))
+                        terminalFilter.CreatedOn = reader.GetDateTime(reader.GetOrdinal("CreatedOn"));
+                if (dt.Select("ColumnName='" + "CreatedBy" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("CreatedBy")))
+                        terminalFilter.CreatedBy = reader.GetInt16(reader.GetOrdinal("CreatedBy"));
+                if (dt.Select("ColumnName='" + "VisibleToOthers" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("VisibleToOthers")))
+                        terminalFilter.VisibleToOthers = reader.GetByte(reader.GetOrdinal("VisibleToOthers"));
+                if (dt.Select("ColumnName='" + "ShownOnModules" + "'").Length > 0)
+                    if (!reader.IsDBNull(reader.GetOrdinal("ShownOnModules")))
+                        terminalFilter.ShownOnModules = reader.GetInt32(reader.GetOrdinal("ShownOnModules"));
+            }
+            return terminalFilter;
+
+        }
     }
 }
