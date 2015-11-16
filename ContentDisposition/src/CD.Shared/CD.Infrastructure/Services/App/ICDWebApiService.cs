@@ -120,35 +120,35 @@ namespace CD.Infrastructure.Services.App
         #endregion
 
         #region package
-        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages")]
-        // [OperationContract]
-        // IList<Package> GetPackages();
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages")]
+        [OperationContract]
+        IList<Package> GetPackages();
 
-        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        // ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items")]
-        // [OperationContract]
-        // IList<Package> GetPackagesWithContent();
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items")]
+        [OperationContract]
+        IList<Package> GetPackagesWithContent(string id);
 
-        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/create")]
-        // [OperationContract]
-        // WebOperationResult CreatePackage(Package package);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/create")]
+        [OperationContract]
+        WebOperationResult CreatePackage(Package package);
 
-        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/modify")]
-        // [OperationContract]
-        // WebOperationResult UpdatePackage(string id,Package package);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/modify")]
+        [OperationContract]
+        WebOperationResult UpdatePackage(string id, Package package);
 
-        //[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/delete")]
-        // [OperationContract]
-        // WebOperationResult DeletePackage(string id);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/delete")]
+        [OperationContract]
+        WebOperationResult DeletePackage(string id);
 
-        // [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
-        //   ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items/{ItemId}")]
-        // [OperationContract]
-        // Package GetPackageItem(string id,string ItemId);
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json, UriTemplate = "content/packages/{id}/Items/{ItemId}")]
+        [OperationContract]
+        Package GetPackageItem(string id, string ItemId);
 
         #endregion
 

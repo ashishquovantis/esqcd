@@ -37,7 +37,14 @@ namespace CD.Infrastructure.Services.Business
         IOperationResult DeleteTerminalFilter(string filterId);
         IOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter);
 
-
+        #region package
+        IOperationResult CreatePackage(Package package);
+        IOperationResult UpdatePackage(string id, Package package);
+        IOperationResult DeletePackage(string id);
+        IList<Package> GetPackages();
+        IList<Package> GetPackagesWithContent(string id);
+        Package GetPackageItem(string id, string ItemId);
+        #endregion
 
     }
 }

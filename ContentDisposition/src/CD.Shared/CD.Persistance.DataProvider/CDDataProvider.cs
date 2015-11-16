@@ -347,5 +347,41 @@ namespace CD.Persistance.DataProvider
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        #region package
+        public bool CreatePackage(Package package, ITransactionContext transactionContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeletePackage(string id, ITransactionContext transactionContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Package GetPackageItem(string id, string ItemId, IDbContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Package> GetPackages(IDbContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdatePackage(string id, Package package, ITransactionContext transactionContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Package> GetPackagesWithContent(string id, IDbContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+
+  
     }
 }

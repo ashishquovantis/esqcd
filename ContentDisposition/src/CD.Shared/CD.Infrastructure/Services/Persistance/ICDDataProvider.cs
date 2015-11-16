@@ -28,5 +28,15 @@ namespace CD.Infrastructure.Services.Persistance
         bool DeleteTerminalFilter(string filterId, ITransactionContext transactionContext);
         bool UpdateTerminalFilter(string filterId, FilterDefs terminalFilter, ITransactionContext transactionContext);
         bool IsCommandScheduledAgainstTemplate(string templateName, IDbContext dbContext);
+
+        #region package
+
+        bool CreatePackage(Package package, ITransactionContext transactionContext);
+        bool UpdatePackage(string id, Package package, ITransactionContext transactionContext);
+        bool DeletePackage(string id, ITransactionContext transactionContext);
+        IList<Package> GetPackages(IDbContext dbContext);
+        IList<Package> GetPackagesWithContent(string id, IDbContext dbContext);
+        Package GetPackageItem(string id, string ItemId, IDbContext dbContext);
+        #endregion
     }
 }

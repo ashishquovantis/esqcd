@@ -152,5 +152,49 @@ namespace CD.WebMessageHandler
                                                                       ? "Template updated successfully"
                                                                       : result.Message, result.Data, result.ResultCode);
         }
+
+        #region package
+        public WebOperationResult CreatePackage(Package package)
+        {
+
+            var result = cdManager.CreatePackage(package);
+            return new WebOperationResult(result.Result, result.Result
+                                                              ? "Package created successfully"
+                                                              : result.Message, "", result.ResultCode);
+        }
+
+        public WebOperationResult DeletePackage(string id)
+        {
+            var result = cdManager.DeletePackage(id);
+            return new WebOperationResult(result.Result, result.Result
+                                                            ? "Package removed successfully"
+                                                            : result.Message, "", result.ResultCode);
+        }
+
+        public Package GetPackageItem(string id, string ItemId)
+        {
+            return cdManager.GetPackageItem(id, ItemId);
+        }
+
+        public IList<Package> GetPackages()
+        {
+            return cdManager.GetPackages();
+        }
+
+        public IList<Package> GetPackagesWithContent(string id)
+        {
+            return cdManager.GetPackagesWithContent(id);
+        }
+
+        public WebOperationResult UpdatePackage(string id, Package package)
+        {
+            var result = cdManager.UpdatePackage(id, package);
+
+            return new WebOperationResult(result.Result, result.Result
+                                                                      ? "Package updated successfully"
+                                                                      : result.Message, result.Data, result.ResultCode);
+        }
+
+        #endregion 
     }
 }

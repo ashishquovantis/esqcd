@@ -25,5 +25,14 @@ namespace CD.Infrastructure.Services.App
         WebOperationResult CreateTerminalFilter(FilterDefs terminalFilter);
         WebOperationResult DeleteTerminalFilter(string filterId);
         WebOperationResult UpdateTerminalFilter(string filterId, FilterDefs terminalFilter);
+
+        #region package
+        WebOperationResult CreatePackage(Package package);
+        WebOperationResult UpdatePackage(string id, Package package);
+        WebOperationResult DeletePackage(string id);
+        IList<Package> GetPackages();
+        IList<Package> GetPackagesWithContent(string id);
+        Package GetPackageItem(string id, string ItemId);
+        #endregion
     }
 }

@@ -361,6 +361,91 @@ namespace CD.Business.Logic.CD
             return new OperationResult() { Result = result, Data = new List<object> { terminalFilter.FilterId } };
         }
 
+        #region package
+        public IOperationResult CreatePackage(Package package)
+        {
+           //check if package already exist!
+           // return new OperationResult() { Result = false, Message = "Package already exist!", Data = new List<object> { Package.Id } };
 
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.CreatePackage(package, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> {  } };
+        }
+
+        public IOperationResult DeletePackage(string id)
+        {
+            //check if package exist!
+           //return new OperationResult() { Result = false, Message = "Package does not exist!", Data = new List<object> { id } };
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.DeletePackage(id, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+            return new OperationResult() { Result = result, Data = new List<object> { id } };
+        }
+
+        public Package GetPackageItem(string id, string itemId)
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetPackageItem(id, itemId, dbContext);
+            } 
+        }
+
+        public IList<Package> GetPackages()
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetPackages(dbContext);
+            } 
+        }
+
+        public IList<Package> GetPackagesWithContent(string id)
+        {
+            using (var dbContext = new DbContext())
+            {
+                return cdDataProvider.GetPackagesWithContent(id, dbContext);
+            } 
+        }
+
+        public IOperationResult UpdatePackage(string id, Package package)
+        {
+            //check if package exist!
+            //return new OperationResult() { Result = false, Message = "Package does not exist!", Data = new List<object> { id } };
+
+            bool result;
+
+            using (var transactionContext = new TransactionContext())
+            {
+                result = cdDataProvider.UpdatePackage(id, package, transactionContext);
+
+                if (result)
+                {
+                    transactionContext.Commit();
+                }
+            }
+
+            return new OperationResult() { Result = result, Data = new List<object> {id} };
+
+        }
+
+        #endregion
     }
 }

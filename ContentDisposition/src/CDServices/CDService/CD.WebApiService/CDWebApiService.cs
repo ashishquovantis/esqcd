@@ -111,5 +111,38 @@ namespace CD.WebApiService
         //    else
         //        return Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResult).ToString();
         //}
+
+        #region package
+        public WebOperationResult CreatePackage(Package package)
+        {
+            return (WebOperationResult)webMessageHandler.CreatePackage(package);
+        }
+
+        public WebOperationResult DeletePackage(string id)
+        {
+            return (WebOperationResult)webMessageHandler.DeletePackage(id);
+        }
+
+        public Package GetPackageItem(string id, string ItemId)
+        {
+            return webMessageHandler.GetPackageItem(id, ItemId);
+        }
+
+        public IList<Package> GetPackages()
+        {
+            return webMessageHandler.GetPackages();
+        }
+
+        public IList<Package> GetPackagesWithContent(string id)
+        {
+            return webMessageHandler.GetPackagesWithContent(id);
+        }
+
+        public WebOperationResult UpdatePackage(string id, Package package)
+        {
+            return (WebOperationResult)webMessageHandler.UpdatePackage(id, package);
+        }
+
+#endregion
     }
 }
