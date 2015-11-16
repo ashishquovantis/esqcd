@@ -103,7 +103,6 @@ namespace CD.Persistance.DataProvider
             return false;
         }
 
-
         public bool UpdateTemplate(string templateId, Template template, ITransactionContext transactionContext)
         {
             string sql = string.Format(Config.DataProvider_UpdateTemplate);
